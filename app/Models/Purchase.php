@@ -7,17 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-class Purchase extends Model
-{
-use HasFactory;
+class Purchase extends Model {
+    
+    use HasFactory;
 
+    protected $fillable = [
+        'client_id',
+        'purchased_at',
+        'amount',
+        'description'
+    ];
 
-protected $fillable = ['client_id','purchased_at','amount','description'];
-protected $casts = [ 'purchased_at' => 'date' ];
+    protected $casts = [
+        'purchased_at' => 'date'
+    ];
 
-
-public function client(): BelongsTo
-{
-return $this->belongsTo(Client::class);
-}
+    public function client(): BelongsTo {
+        return $this->belongsTo(Client::class);
+    }
 }
